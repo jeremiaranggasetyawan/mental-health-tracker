@@ -118,6 +118,9 @@ def add_mood_entry_ajax(request):
     mood_intensity = request.POST.get("mood_intensity")
     user = request.user
 
+    if mood == "" or feelings == "":
+        return messages.error(request, "Please fill with a correct input!")
+
     new_mood = MoodEntry(
         mood=mood, feelings=feelings,
         mood_intensity=mood_intensity,
